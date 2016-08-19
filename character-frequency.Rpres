@@ -1,0 +1,79 @@
+An app for calculating character frequency in text
+========================================================
+author: Yogesh
+date: `r date()`
+autosize: true
+
+What does the app do?
+===
+The app asks the user for some text input, and computes how frequently each letter of the alphabet appears, 
+and outputs a table listing how frequently each letter appears. The letters are listed in decreasing order of frequency. 
+Also, a scatterplot of the frequency per letter is output.
+
+No distinction is made between upper and lower case letters, and numbers and punctuation are ignored.
+
+Where to find the app
+========================================================
+
+The app may be accessed at https://ykm2234.shinyapps.io/data-products/
+
+The ui.R and server.R files may be found at 
+https://github.com/ykm2234/data-products
+
+Screen shot
+========================================================
+
+![](screenshot.png)
+
+Slide With Code
+========================================================
+
+```{r, echo=FALSE}
+library(shiny)
+library(stringr)
+library(ggplot2)
+
+## the following function unordered_table takes a string of text as input 
+## converts it to all lowercase
+## and returns a data frame whose first column is letters of alphabet
+## and second column is number of instances of each letter in mystring
+## and third column is the frequeny (as a percentage) with which each letter appears
+
+unordered_table<-function(mystring)
+{ mystring<-tolower(mystring)
+  count_vector<-as.integer("")
+  j<-1
+  for (i in letters)  { count_vector[j]<-str_count(mystring, i)
+      j<-j+1
+    }
+  len<-sum(count_vector)
+  freq<-100*count_vector/len
+  df<-data.frame(letters, count_vector, freq)
+}
+
+## the function ordered_table takes a string of text as input
+## calls the underordered_table function on that string
+## then sorts the table based on count of each letter in decreasing frequency
+
+ordered_table<-function(mystring)
+{
+  df<-unordered_table(mystring)
+  df<-df[order(df$count_vector, decreasing=TRUE),]
+  names(df)<-c("Letter", "Count", "Frequency (percentage)")
+  df
+}  
+  
+## the percentage_plot function takes a string of text as input
+## call the unordered table function to get the frequency of each letter in the string
+## then makes a scatterplot with the letters on the x-axis and the percentage on y-axis
+percentage_plot<-function(mystring)
+{
+  df<-unordered_table(mystring)
+  ggplot(df, aes(x=letters, y=freq)) + geom_point() + labs(y="Percentage")
+}
+
+```
+
+```{r}
+ordered_table("The quick brown fox jumps over the lazy dog")
+```
