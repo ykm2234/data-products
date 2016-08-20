@@ -15,10 +15,11 @@ No distinction is made between upper and lower case letters, and numbers and pun
 Where to find the app
 ========================================================
 
-The app may be accessed at https://ykm2234.shinyapps.io/data-products/
+The app may be accessed at
+<https://ykm2234.shinyapps.io/character-frequency/>
 
 The ui.R and server.R files may be found at 
-https://github.com/ykm2234/data-products
+<https://github.com/ykm2234/data-products>
 
 Screen shot
 ========================================================

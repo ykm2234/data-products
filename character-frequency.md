@@ -1,7 +1,7 @@
 An app for calculating character frequency in text
 ========================================================
 author: Yogesh
-date: Fri Aug 19 18:50:20 2016
+date: Fri Aug 19 22:14:19 2016
 autosize: true
 
 What does the app do?
@@ -15,10 +15,11 @@ No distinction is made between upper and lower case letters, and numbers and pun
 Where to find the app
 ========================================================
 
-The app may be accessed at https://ykm2234.shinyapps.io/data-products/
+The app may be accessed at
+<https://ykm2234.shinyapps.io/character-frequency/>
 
 The ui.R and server.R files may be found at 
-https://github.com/ykm2234/data-products
+<https://github.com/ykm2234/data-products>
 
 Screen shot
 ========================================================
